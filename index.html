@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="estilo.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <center>
+        <h1>
+            Gerenciamento de Inventários
+        </h1>
+        <input type="text" id="texto_pesquisado" size="60">
+        <button id='btnPesquisar'>🔎Pesquisa</button>
+    </center>
+
+    <div id="conteudo">  
+        
+    <div>   
+    <script>
+        $(document).ready(function(){
+            $("#conteudo").load("consultar.php");
+        });
+    </script>
+</body>
+</html>
