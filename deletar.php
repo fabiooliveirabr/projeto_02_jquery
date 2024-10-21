@@ -1,6 +1,5 @@
 <?php
 include "conexao.php";
-include "verificar_logado.php";
 
 $codigo = $_GET['cod'];
 

@@ -13,12 +13,8 @@ $inserir = $pdo->prepare($sql);
 // 3º Passo - Tentar executar
 try{
     $inserir->execute();
-    echo "
-        <script>
-            alert('Cadastrado com sucesso');
-        </script>
-    ";
+    echo "Cadastrado com sucesso";
 } catch(PDOException $erro){
-    echo "Falha ao inserir!".$erro->getMesage();
+    echo "Falha ao inserir!".$erro->getMessage();
 }
 ?>
