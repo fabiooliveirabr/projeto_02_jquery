@@ -8,16 +8,69 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
+    <div id="carregando">
+        <img src="carregando.gif">
+    </div>
+
+    <div id="carregando2">
+        <div id="formulario">
+            <button id="btnFechar"> x </button> <br><br>
+            Código: <input type="text" id="codigo" disabled> <br><br>
+            Descrição: <input type="text" id="descricao"> <br><br>
+            Categoria: <input type="text" id="categoria"> <br><br>
+            <button id="btnSalvar">Salvar alterações</button>
+            <button id="btnDeletar">Deletar</button>
+        </div>
+    </div>
+
     <center>
         <h1>
             Gerenciamento de Inventários
         </h1>
         <input type="text" id="texto_pesquisado" size="60">
-        <button id='btnPesquisar'>🔎Pesquisa</button>
+        <button id='btnPesquisar'>🔎Pesquisar</button>
     </center>
 
-    <div id="conteudo">  
-        
-    <div>   
+    <div id="conteudo"> 
+        <img src="carregando.gif" alt="" height="50">
+    </div>
+
+    <script>
+        $(document).ready(function(){
+            $("#carregando").hide();
+            $("#carregando2").hide();
+
+            $("#conteudo").load("consultar.php");
+
+            $("#btnFechar").click(function(){
+                $("#carregando2").hide();
+            });
+
+            $(document).on("click", ".cartoes", function(){
+                $("#carregando2").show();
+            });
+
+            $("#btnPesquisar").click(function(){
+                $("#carregando").show();
+                var texto = $("#texto_pesquisado").val();
+                //Requisição Assíncrona
+                $.ajax({
+                    url: 'pesquisar.php',
+                    type: 'POST',
+                    data: {texto_pesquisado: texto},
+                    success: function(data){
+                        $("#conteudo").html(data);
+                        $("#carregando").hide();
+                    },
+                    error: function(){
+                        alert("Falha na pesquisa!");
+                    }
+                });
+
+            });
+
+
+        });
+    </script>   
 </body>
 </html>

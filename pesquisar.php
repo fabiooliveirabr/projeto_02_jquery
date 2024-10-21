@@ -12,6 +12,7 @@
     // 3º Passo - Tentar executar e mostrar resultados
     try{
         $consultar->execute();
+        echo $consultar->rowCount()==0? "Nada encontrado 🫤" : "";
         $resultados = $consultar->fetchAll(PDO::FETCH_ASSOC);
         foreach($resultados as $item){
             $codigo = $item['codigo'];
