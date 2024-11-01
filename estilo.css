@@ -7,10 +7,8 @@ body{
     flex-wrap: wrap;
     justify-content: space-evenly;
     padding: 30px;
-    /* border: 1px solid red; */
+    border: 1px solid red;
 }
-
-
 .cartoes{
     background-color: white;
     min-width: 200px;
@@ -32,70 +30,3 @@ body{
     background-color: goldenrod;
 }
 
-input, select, button{
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
-
-#carregando, #carregando2, #carregando3{
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(5px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    top: 0px;
-    z-index: 1000;
-}
-#formulario{
-    background-color: white;
-    width: fit-content;
-    height: fit-content;
-    padding: 40px;
-    border-radius: 20px;
-    box-shadow: 0px 0px 20px black;
-}
-#formulario button:nth-of-type(2){
-    background-color: blue;
-    color: white;
-    border: none;
-    border-radius: 10px;
-}
-#formulario button:nth-of-type(3){
-    background-color: red;
-    color: white;
-    border: none;
-    border-radius: 10px;
-}
-#formulario button:hover{
-    transform: scale(1.1);
-    cursor: pointer;
-}
-
-#carregando img{
-    height: 80px;
-}
-
-#btnAdicionar{
-    background-color: blue;
-    width: 60px;
-    height: 60px;
-    padding: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 35px;
-    border-radius: 100%;
-    transition: all 0.5s;
-    position: fixed;
-    z-index: 999;
-    right: 20px;
-    bottom: 20px;
-}
-#btnAdicionar:hover{
-    cursor: pointer;
-    transform: scale(1.2);
-}
