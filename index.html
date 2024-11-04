@@ -24,13 +24,105 @@
     <div id="escurecer">
         <img src="carregando.gif" id="imgCarregando">
     </div>
+
+    <div id="escurecer2">
+        <div id="formulario">
+            <button id="btnFechar"> x </button> <br>
+            <h1>Editar/Deletar</h1>
+            Código: <input type="text" id="caixaId" disabled> <br> <br>
+            Descrição: <input type="text" id="caixaDescricao"> <br> <br>
+            Categoria: <input type="text" id="caixaCategoria"> <br><br>
+            Setor:  <select id="caixaSetor">
+                        <option value="">Selecione</option>
+                        <option value="NAD">NAD</option>
+                        <option value="NEP">NEP</option>
+                        <option value="Suporte">Suporte</option>
+                        <option value="Atendimento">Atendimento</option>
+                        <option value="Administrativo">Administrativo</option>
+                    </select> <br><br>
+                    <button id="btnSalvar">Salvar alterações</button>
+                    <button id="btnExcluir">Deletar</button>
+        </div>
+    </div>
     
     <script>
+        $("#btnSalvar").click(function(){
+            $("#escurecer2").hide();
+            $("#escurecer").show();
+            var id_escolhido = $("#caixaId").val();
+            var desc_escolhida = $("#caixaDescricao").val();
+            var setor_escolhido = $("#caixaSetor").val();
+            var cat_escolhida = $("#caixaCategoria").val();
+            $.ajax({
+                url: "atualizar.php",
+                method:  "POST",
+                data: {cod: id_escolhido,
+                       cat_nova: cat_escolhida,
+                       desc_nova: desc_escolhida,                       
+                       setor_novo: setor_escolhido
+                },
+                success: function(resposta){
+                    alert(resposta);
+                    $("#escurecer").hide();
+                    $("#conteudo").html("Carregando...");
+                    $("#conteudo").load("consultar.php");
+                },
+                error:  function(){
+                    alert("Não foi possível atualizar");
+                    $("#escurecer").hide();
+                    $("#conteudo").load("consultar.php");
+                }
+            });            
+        }); //Fim do click no botao de salvar
+
+        $("#btnExcluir").click(function(){
+            var id_escolhido = $("#caixaId").val();
+            $("#escurecer2").hide();
+            $("#escurecer").show();
+            $.ajax({
+                url: "deletar.php",
+                method: "GET",
+                data: {cod:  id_escolhido},
+                success:  function(resposta){
+                    alert(resposta);
+                    $("#escurecer").hide();
+                    $("#conteudo").load("consultar.php");
+                },
+                error: function(){
+                    alert("Não foi possível deletar");
+                    $("#escurecer").hide();
+                }
+            });
+        });//Fim do click no btnExcluir
+
         $(document).ready(function(){
             $("#conteudo").html("<img src='carregando.gif' height='50'>");
             $("#escurecer").hide();
             $("#conteudo").load("consultar.php");
+            $("#escurecer2").hide();
         });//Fim do DOCUMENT-READY
+
+        //Detectar o click nos cartões
+        $(document).on("click", ".cartoes", function(){
+            //Mostrar a div #escurecer2 com o formulário
+            $("#escurecer2").show();
+
+            //Pegar o texto do cartão clicado
+            var codigo_capturado = $(this).find(".cod_produto").text();
+            var desc_capturada = $(this).find(".desc_produto").text();
+            var setor_capturado = $(this).find(".setor_produto").text();
+            var categ_capturada = $(this).find(".cat_produto").text();
+
+            //Mostrar  os dados nas caixas de texto
+            $("#caixaId").val(codigo_capturado);
+            $("#caixaDescricao").val(desc_capturada);
+            $("#caixaSetor").val(setor_capturado);
+            $("#caixaCategoria").val(categ_capturada);
+        });//Fim do click nos cartões
+
+        $("#btnFechar").click(function(){
+            $("#escurecer2").hide();
+        });//Fim do click no btn fechar
 
         $("#btnPesquisar").click(function(){
             var texto_pesquisado = $("#texto_pesquisado").val();

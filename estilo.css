@@ -34,7 +34,7 @@ body{
     height: 50px;
 }
 
-#escurecer{
+#escurecer, #escurecer2{
     width: 100vw;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.5);
@@ -46,4 +46,10 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+#formulario{
+    background-color: white;
+    padding: 30px;
+    border-radius: 20px;
 }

@@ -12,11 +12,7 @@ $deletar = $pdo->prepare($sql);
 // 3º Passo - Tentar executar
 try{
     $deletar->execute();
-    echo "
-        <script>
-            alert('Deletado com sucesso!');
-        </script>
-    ";
+    echo "Deletado com sucesso!";
 }catch(PDOException $erro){
     echo "Falha ao deletar!" . $erro->getMessage();
 }
