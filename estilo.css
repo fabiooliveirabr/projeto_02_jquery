@@ -7,7 +7,7 @@ body{
     flex-wrap: wrap;
     justify-content: space-evenly;
     padding: 30px;
-    border: 1px solid red;
+    /* border: 1px solid red; */
 }
 .cartoes{
     background-color: white;
@@ -30,3 +30,20 @@ body{
     background-color: goldenrod;
 }
 
+#imgCarregando{
+    height: 50px;
+}
+
+#escurecer{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

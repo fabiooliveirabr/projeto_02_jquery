@@ -21,6 +21,34 @@
        RESULTADO TEM QUE APARECER AQUI
     </div>
 
+    <div id="escurecer">
+        <img src="carregando.gif" id="imgCarregando">
+    </div>
     
+    <script>
+        $(document).ready(function(){
+            $("#conteudo").html("<img src='carregando.gif' height='50'>");
+            $("#escurecer").hide();
+            $("#conteudo").load("consultar.php");
+        });//Fim do DOCUMENT-READY
+
+        $("#btnPesquisar").click(function(){
+            var texto_pesquisado = $("#texto_pesquisado").val();
+            $("#conteudo").html("<img src='carregando.gif' height='50'>");
+            $.ajax({
+                url:  "pesquisar.php",
+                method: "POST",
+                data: {texto_pesquisado: texto_pesquisado},
+                success: function(resposta){
+                    $("#conteudo").html(resposta);
+                },
+                error: function(){
+                    alert("Não foi possível pesquisar!");
+                }
+            });
+        });//Fim do click no botão btn Pesquisar
+
+    </script>
+
 </body>
 </html>
